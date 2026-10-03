@@ -20,6 +20,11 @@ from pathlib import Path
 import gemmi
 import requests
 
+try:
+    from .portable_paths import relative_path
+except ImportError:  # direct script execution
+    from portable_paths import relative_path
+
 
 FIELDS = [
     "target_id", "prediction_disposition", "prediction_element_signature",
@@ -129,7 +134,7 @@ def main() -> int:
         try:
             path, source = reference(target_id, args.cache_dir)
             component_ids, instances, composite = candidates(path, row["equibind_element_signature"], args.max_component_combination)
-            output.update({"reference_path": str(path), "reference_source": source, "reference_status": "available", "candidate_component_ids": ";".join(component_ids), "candidate_residue_instances": ";".join(instances), "candidate_component_type_count": len(component_ids), "is_composite_candidate": composite})
+            output.update({"reference_path": relative_path(path), "reference_source": source, "reference_status": "available", "candidate_component_ids": ";".join(component_ids), "candidate_residue_instances": ";".join(instances), "candidate_component_type_count": len(component_ids), "is_composite_candidate": composite})
             if len(component_ids) == 1:
                 output["audit_disposition"] = "composite_reference_ligand_requires_graph_confirmation" if composite else "candidate_reference_ligand_identified"
             elif len(component_ids) > 1:

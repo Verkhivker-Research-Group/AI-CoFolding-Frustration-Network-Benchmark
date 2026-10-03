@@ -16,7 +16,12 @@ recompute any metric and does NOT touch other producers' CSVs.
 from pathlib import Path
 import pandas as pd
 
-BENCH = Path("/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark")
+try:
+    from .local_paths import REPO_ROOT
+except ImportError:  # Direct script execution.
+    from local_paths import REPO_ROOT
+
+BENCH = REPO_ROOT
 PARQUET = BENCH / "plb_bench_output" / "pla" / "benchmark_with_pocket_rmsd.parquet"
 EVAL_DIR = BENCH / "evalspreadsheets" / "pla"
 OUTPUT_PRODUCER = "dynamicbind_pla"

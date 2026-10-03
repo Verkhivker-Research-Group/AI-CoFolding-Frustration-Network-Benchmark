@@ -24,7 +24,12 @@ import logging
 from pathlib import Path
 
 # ── Force our plb_bench to the front of sys.path ────────────────────────────
-_BENCH_ROOT = Path("/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark")
+try:
+    from .local_paths import REPO_ROOT, DATA_ROOT as ARCHIVE_ROOT
+except ImportError:  # Direct script execution.
+    from local_paths import REPO_ROOT, DATA_ROOT as ARCHIVE_ROOT
+
+_BENCH_ROOT = REPO_ROOT
 _PKG_ROOT   = _BENCH_ROOT / "scoring" / "plb_bench"
 
 # Remove any stale plb_bench already cached in sys.modules
@@ -58,8 +63,8 @@ log = logging.getLogger(__name__)
 log.info("plb_bench loaded from: %s", _pb_file)
 
 # ── Paths (mirror plb_bench_run_pla.ipynb cell 4d3ee718) ────────────────────
-DATA_ROOT  = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive/plb_bench_data")
-REFS_DIR   = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive/references_ref_cifs")
+DATA_ROOT  = ARCHIVE_ROOT / "plb_bench_data"
+REFS_DIR   = ARCHIVE_ROOT / "references_ref_cifs"
 OUTPUT_DIR = _BENCH_ROOT / "plb_bench_output" / "pla"
 EVAL_DIR   = _BENCH_ROOT / "evalspreadsheets" / "pla"
 POCKET_RADIUS    = 5.0

@@ -92,13 +92,13 @@ class StaticScoringTests(unittest.TestCase):
                 actual = heavy.GetConformer().GetAtomPosition(index)
                 self.assertAlmostEqual(original.x, actual.x, places=3)
 
-    def test_windows_paths_are_resolved_for_wsl(self):
+    def test_manifest_paths_are_portable(self):
         from pathlib import Path
-        root = Path("/mnt/c/repo")
-        self.assertEqual(resolve_path(r"C:\Users\Ryan\file.sdf", root),
-                         Path("/mnt/c/Users/Ryan/file.sdf"))
+        root = Path(__file__).resolve().parents[3]
         self.assertEqual(resolve_path(r"misato_output\ref.cif", root),
                          root / "misato_output/ref.cif")
+        with self.assertRaises(ValueError):
+            resolve_path(r"C:\private\file.sdf", root)
 
     def test_multicopy_reference_is_excluded(self):
         row = {"target_id": "AAAA", "method": "diffdock", "pose_path": "pose.sdf",

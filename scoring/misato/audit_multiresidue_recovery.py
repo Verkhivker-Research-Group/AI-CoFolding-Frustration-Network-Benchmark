@@ -15,6 +15,11 @@ import gemmi
 import numpy as np
 
 try:
+    from .portable_paths import DATA_ROOT, resolve_path
+except ImportError:  # direct script execution
+    from portable_paths import DATA_ROOT, resolve_path
+
+try:
     from .audit_crystal_poses import (
         direct_pose_rmsd,
         heavy_mol,
@@ -99,7 +104,7 @@ def multiresidue_candidates(path: Path, wanted: Counter[int]) -> list[dict]:
 
 
 def audit_pose(row: dict[str, str], candidates: list[dict]) -> dict[str, object]:
-    pose = heavy_mol(Path(row["pose_path"]))
+    pose = heavy_mol(resolve_path(row["pose_path"]))
     wanted = signature([a.GetAtomicNum() for a in pose.GetAtoms()])
     exact = [candidate for candidate in candidates if candidate["signature"] == wanted]
     result: dict[str, object] = {
@@ -138,7 +143,7 @@ def audit_pose(row: dict[str, str], candidates: list[dict]) -> dict[str, object]
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--scores", type=Path, default=Path("misato_output/misato_score_allcopies_v1.csv"))
-    parser.add_argument("--crystal-dir", type=Path, default=Path("misato_output/rcsb_asymmetric_unit"))
+    parser.add_argument("--crystal-dir", type=Path, default=DATA_ROOT / "misato/references")
     parser.add_argument("--out-csv", type=Path, required=True)
     parser.add_argument("--limit-targets", type=int, default=0)
     args = parser.parse_args()
@@ -161,7 +166,7 @@ def main() -> int:
                 break
             path = args.crystal_dir / f"{target_id[:4]}.cif"
             try:
-                first_pose = heavy_mol(Path(rows[0]["pose_path"]))
+                first_pose = heavy_mol(resolve_path(rows[0]["pose_path"]))
                 wanted = signature([a.GetAtomicNum() for a in first_pose.GetAtoms()])
                 candidates = multiresidue_candidates(path, wanted)
                 for row in rows:

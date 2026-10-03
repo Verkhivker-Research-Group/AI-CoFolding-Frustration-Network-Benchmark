@@ -47,8 +47,7 @@ Pipeline stages
    Column order: id, pose rmsd, pocket rmsd, qs score, lddt-pli, confidence
 
 Run from WSL with the plb conda env active:
-    PYTHONPATH=/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark/scoring/plb_bench:$PYTHONPATH \\
-    python -u scoring/dynamicbind_asd_v2_pipeline.py 2>&1 | tee /mnt/c/Temp/dynamicbind_asd_v2.log
+    PLB_BENCH_DATA_ROOT=data python -u scoring/dynamicbind_asd_v2_pipeline.py
 """
 
 from __future__ import annotations
@@ -81,8 +80,12 @@ log = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-BENCH_ROOT = Path("/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark")
-ARCHIVE    = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive")
+try:
+    from .local_paths import REPO_ROOT, DATA_ROOT as ARCHIVE
+except ImportError:  # Direct script execution.
+    from local_paths import REPO_ROOT, DATA_ROOT as ARCHIVE
+
+BENCH_ROOT = REPO_ROOT
 
 RAW_ROOT   = ARCHIVE / "asd_dynamicbind_results_v2" / "asd_dynamicbind_results"
 DATA_ROOT  = ARCHIVE / "plb_bench_data"

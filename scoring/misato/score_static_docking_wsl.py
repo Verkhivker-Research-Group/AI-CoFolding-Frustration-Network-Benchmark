@@ -9,7 +9,6 @@ from __future__ import annotations
 import argparse
 import csv
 import logging
-import re
 import signal
 import sys
 import tempfile
@@ -18,6 +17,11 @@ from collections import Counter, defaultdict
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
+try:
+    from .portable_paths import resolve_path
+except ImportError:  # direct script execution
+    from portable_paths import resolve_path
+
 
 FIELDS = [
     "target_id", "method", "pose_path", "reference_path", "reference_residue",
@@ -25,14 +29,6 @@ FIELDS = [
     "lddt_pli", "selected_ref_ost_chain", "selected_ref_ost_atom_count",
     "elapsed_seconds", "error",
 ]
-
-
-def resolve_path(value: str, repo_root: Path) -> Path:
-    """Accept the Windows paths stored in the raw manifests from inside WSL."""
-    if match := re.match(r"^([A-Za-z]):[\\/](.*)$", value):
-        return Path(f"/mnt/{match.group(1).lower()}/" + match.group(2).replace("\\", "/"))
-    path = Path(value.replace("\\", "/"))
-    return path if path.is_absolute() else repo_root / path
 
 
 def read_audit(path: Path) -> list[dict[str, str]]:

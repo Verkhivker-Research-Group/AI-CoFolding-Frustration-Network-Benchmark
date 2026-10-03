@@ -7,6 +7,11 @@ from pathlib import Path
 
 from rdkit import Chem, RDLogger
 
+try:
+    from .portable_paths import resolve_path
+except ImportError:  # direct script execution
+    from portable_paths import resolve_path
+
 
 RDLogger.DisableLog("rdApp.*")
 FIELDS = ["target_id", "method", "pose_path", "status", "element_signature", "heavy_atoms", "error"]
@@ -37,8 +42,9 @@ def main() -> int:
         if len(present) != 1:
             continue
         method = present[0]
-        path = Path(target[f"{method}_primary_path"])
-        row = {"target_id": target["target_id"], "method": method, "pose_path": str(path),
+        path_text = target[f"{method}_primary_path"]
+        path = resolve_path(path_text)
+        row = {"target_id": target["target_id"], "method": method, "pose_path": path_text,
                "status": "", "element_signature": "", "heavy_atoms": "", "error": ""}
         try:
             row["element_signature"], row["heavy_atoms"] = signature(path)

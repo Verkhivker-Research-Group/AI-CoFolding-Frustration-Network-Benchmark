@@ -14,6 +14,11 @@ from pathlib import Path
 
 from rdkit import Chem, RDLogger
 
+try:
+    from .portable_paths import resolve_path
+except ImportError:  # direct script execution
+    from portable_paths import resolve_path
+
 RDLogger.DisableLog("rdApp.*")
 
 
@@ -30,7 +35,7 @@ FIELDS = [
 def descriptor(path_text: str) -> tuple[str, int | str, str, str, str, str]:
     if not path_text:
         return "missing_path", "", "", "", "", ""
-    path = Path(path_text)
+    path = resolve_path(path_text)
     try:
         mol = Chem.MolFromMolFile(str(path), sanitize=True, removeHs=False)
     except Exception as error:

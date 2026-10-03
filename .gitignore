@@ -1,5 +1,6 @@
 # ── Large data — kept locally in AI-CoFolding-Archive/ ──────────────────────
 plb_bench_data/
+data/
 predictions/
 output/
 misato_output/

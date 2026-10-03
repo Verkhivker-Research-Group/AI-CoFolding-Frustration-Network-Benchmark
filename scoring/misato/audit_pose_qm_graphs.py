@@ -10,6 +10,11 @@ from pathlib import Path
 import networkx as nx
 from rdkit import Chem, RDLogger
 
+try:
+    from .portable_paths import resolve_path
+except ImportError:  # direct script execution
+    from portable_paths import resolve_path
+
 
 RDLogger.DisableLog("rdApp.*")
 FIELDS = ["target_id", "method", "pose_path", "graph_status", "qm_heavy_atoms",
@@ -72,8 +77,9 @@ def main() -> int:
             for method in statuses:
                 if target[f"{method}_status"] != "candidate":
                     continue
-                path = Path(target[f"{method}_primary_path"])
-                row = {"target_id": target_id, "method": method, "pose_path": str(path),
+                path_text = target[f"{method}_primary_path"]
+                path = resolve_path(path_text)
+                row = {"target_id": target_id, "method": method, "pose_path": path_text,
                        "graph_status": "", "qm_heavy_atoms": "", "pose_heavy_atoms": "",
                        "qm_bonds": "", "pose_bonds": "", "error": ""}
                 try:

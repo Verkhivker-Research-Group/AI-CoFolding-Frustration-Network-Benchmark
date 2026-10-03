@@ -21,10 +21,12 @@ try:
     from .audit_crystal_poses import heavy_mol, native_graph, signature, untyped_graph
     from .audit_multiresidue_recovery import multiresidue_candidates
     from .score_static_docking_wsl import initialize_worker, resolve_path
+    from .portable_paths import DATA_ROOT
 except ImportError:  # direct WSL script execution
     from audit_crystal_poses import heavy_mol, native_graph, signature, untyped_graph
     from audit_multiresidue_recovery import multiresidue_candidates
     from score_static_docking_wsl import initialize_worker, resolve_path
+    from portable_paths import DATA_ROOT
 
 
 FIELDS = ["target_id", "method", "status", "bisy_rmsd_angstrom", "lddt_pli",
@@ -220,7 +222,7 @@ def main() -> int:
     parser.add_argument("--allcopies", type=Path,
                         default=Path("misato_output/misato_score_allcopies_v1.csv"))
     parser.add_argument("--crystal-dir", type=Path,
-                        default=Path("misato_output/rcsb_asymmetric_unit"))
+                        default=DATA_ROOT / "misato/references")
     parser.add_argument("--out-csv", type=Path, required=True)
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--timeout-seconds", type=int, default=120)

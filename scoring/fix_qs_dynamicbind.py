@@ -32,7 +32,12 @@ import concurrent.futures as _cf
 from pathlib import Path
 import numpy as np
 
-_PKG = Path("/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark/scoring/plb_bench")
+try:
+    from .local_paths import REPO_ROOT, DATA_ROOT as ARCHIVE_ROOT
+except ImportError:  # Direct script execution.
+    from local_paths import REPO_ROOT, DATA_ROOT as ARCHIVE_ROOT
+
+_PKG = REPO_ROOT / "scoring" / "plb_bench"
 if str(_PKG) not in sys.path:
     sys.path.insert(0, str(_PKG))
 
@@ -44,9 +49,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
                     stream=sys.stdout, force=True)
 log = logging.getLogger(__name__)
 
-BENCH      = Path("/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark")
-DATA_ROOT  = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive/plb_bench_data")
-REFS_DIR   = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive/references_ref_cifs")
+BENCH      = REPO_ROOT
+DATA_ROOT  = ARCHIVE_ROOT / "plb_bench_data"
+REFS_DIR   = ARCHIVE_ROOT / "references_ref_cifs"
 OUT_DIR    = BENCH / "plb_bench_output" / "pla"
 EVAL_DIR   = BENCH / "evalspreadsheets" / "pla"
 PRODUCER   = "dynamicbind_pla"

@@ -15,11 +15,16 @@ Continuous, robust, reflects how well the protein-ligand interface is reproduced
 import sys, tempfile, os
 from pathlib import Path
 import numpy as np
-sys.path.insert(0, "/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark/scoring/plb_bench")
+try:
+    from .local_paths import REPO_ROOT, DATA_ROOT as ARCHIVE_ROOT
+except ImportError:  # Direct script execution.
+    from local_paths import REPO_ROOT, DATA_ROOT as ARCHIVE_ROOT
+
+sys.path.insert(0, str(REPO_ROOT / "scoring" / "plb_bench"))
 from plb_bench.references import get_reference, read_reference_text
 from plb_bench.scoring import _get_ref_lig_name
-REFS = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive/references_ref_cifs")
-DATA = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive/plb_bench_data/dynamicbind_pla")
+REFS = ARCHIVE_ROOT / "references_ref_cifs"
+DATA = ARCHIVE_ROOT / "plb_bench_data" / "dynamicbind_pla"
 from ost import io as ost_io
 
 def load(text):
@@ -116,7 +121,7 @@ def reftext(pid):
 
 # test: good poses (low bisy) should give higher QS than bad poses (high bisy)
 import pandas as pd
-bench=pd.read_parquet("/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark/plb_bench_output/pla/benchmark.parquet")
+bench=pd.read_parquet(REPO_ROOT / "plb_bench_output" / "pla" / "benchmark.parquet")
 for pid in ["b6ywb8_dtp","o14965_6f2","o15530_3q3","p00044_6vb","p00533_az1" ]:
     if pid not in set(bench.pdb_id):
         # pick a real one

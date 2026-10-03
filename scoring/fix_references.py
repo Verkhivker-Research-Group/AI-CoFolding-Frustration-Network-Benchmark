@@ -9,15 +9,20 @@ Working targets are NOT touched. Read source of truth = reference_remap.csv.
 import sys, gzip, shutil, time
 from pathlib import Path
 import requests
-sys.path.insert(0, "/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark/scoring/plb_bench")
+try:
+    from .local_paths import REPO_ROOT, DATA_ROOT
+except ImportError:  # Direct script execution.
+    from local_paths import REPO_ROOT, DATA_ROOT
+
+sys.path.insert(0, str(REPO_ROOT / "scoring" / "plb_bench"))
 import pandas as pd
 
-REFS = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive/references_ref_cifs")
-BACKUP = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive/references_ref_cifs_backup_wrong")
-BACKUP.mkdir(exist_ok=True)
+REFS = DATA_ROOT / "references_ref_cifs"
+BACKUP = DATA_ROOT / "references_ref_cifs_backup_wrong"
+BACKUP.mkdir(parents=True, exist_ok=True)
 
-remap = pd.read_csv("/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark/scoring/reference_remap.csv")
-df = pd.read_parquet("/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark/plb_bench_output/pla/benchmark.parquet")
+remap = pd.read_csv(REPO_ROOT / "scoring" / "reference_remap.csv")
+df = pd.read_parquet(REPO_ROOT / "plb_bench_output" / "pla" / "benchmark.parquet")
 db = df[df.producer == "dynamicbind_pla"]
 scored = db.groupby("pdb_id")["bisy_rmsd"].apply(lambda s: s.notna().any())
 remap = remap.merge(scored.rename("scored"), left_on="pdb_id", right_index=True, how="left")

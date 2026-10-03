@@ -19,6 +19,11 @@ import numpy as np
 from rdkit import Chem, RDLogger
 from rdkit.Chem import rdDetermineBonds
 
+try:
+    from .portable_paths import DATA_ROOT, relative_path, resolve_path
+except ImportError:  # direct script execution
+    from portable_paths import DATA_ROOT, relative_path, resolve_path
+
 
 RDLogger.DisableLog("rdApp.*")
 EXCLUDE = {"HOH", "WAT", "DOD", "EDO", "GOL", "PEG", "PO4", "SO4", "ACT",
@@ -145,7 +150,7 @@ def audit_target(target: dict, crystal_dir: Path) -> list[dict[str, object]]:
     poses = {}
     for method, path_text in methods:
         try:
-            poses[method] = heavy_mol(Path(path_text))
+            poses[method] = heavy_mol(resolve_path(path_text))
         except (OSError, ValueError) as error:
             poses[method] = error
     if crystal_path.is_file():
@@ -193,7 +198,7 @@ def audit_target(target: dict, crystal_dir: Path) -> list[dict[str, object]]:
     for method, path_text in methods:
         pose = poses[method]
         row = {"target_id": target_id, "pdb_id": pdb_id, "method": method,
-               "pose_path": path_text, "reference_path": str(crystal_path) if crystal_path.is_file() else "",
+               "pose_path": path_text, "reference_path": relative_path(crystal_path) if crystal_path.is_file() else "",
                "reference_status": selection, "reference_candidate_count": len(candidates),
                "reference_selection": selection, "reference_residues": chosen["label"] if chosen else "",
                "pose_heavy_atoms": pose.GetNumAtoms() if hasattr(pose, "GetNumAtoms") else "",
@@ -221,7 +226,7 @@ def audit_target(target: dict, crystal_dir: Path) -> list[dict[str, object]]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--target-manifest", type=Path, default=Path("misato_output/inventory/target_manifest.csv"))
-    parser.add_argument("--crystal-dir", type=Path, default=Path("misato_output/rcsb_asymmetric_unit"))
+    parser.add_argument("--crystal-dir", type=Path, default=DATA_ROOT / "misato/references")
     parser.add_argument("--out-csv", type=Path, required=True)
     parser.add_argument("--limit", type=int, default=0, help="First N targets; 0 means all")
     args = parser.parse_args()

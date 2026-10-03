@@ -14,6 +14,11 @@ from pathlib import Path
 
 import requests
 
+try:
+    from .portable_paths import DATA_ROOT, relative_path
+except ImportError:  # direct script execution
+    from portable_paths import DATA_ROOT, relative_path
+
 
 PDB_ID = re.compile(r"^[A-Z0-9]{4}")
 FIELDS = ["pdb_id", "status", "path", "bytes", "sha256", "http_status", "note"]
@@ -49,7 +54,7 @@ def fetch_one(pdb_id: str, directory: Path, session: requests.Session, timeout: 
     if destination.exists():
         data = destination.read_bytes()
         status = "cached_valid" if valid_cif(data, pdb_id) else "cached_invalid_needs_review"
-        return {"pdb_id": pdb_id, "status": status, "path": str(destination),
+        return {"pdb_id": pdb_id, "status": status, "path": relative_path(destination),
                 "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest(), "http_status": "", "note": ""}
     url = f"https://files.rcsb.org/download/{pdb_id}.cif"
     try:
@@ -70,15 +75,15 @@ def fetch_one(pdb_id: str, directory: Path, session: requests.Session, timeout: 
             handle.write(data)
     except FileExistsError:
         return fetch_one(pdb_id, directory, session, timeout)
-    return {"pdb_id": pdb_id, "status": "downloaded", "path": str(destination),
+    return {"pdb_id": pdb_id, "status": "downloaded", "path": relative_path(destination),
             "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest(), "http_status": 200, "note": ""}
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--target-manifest", type=Path, default=Path("misato_output/inventory/target_manifest.csv"))
-    parser.add_argument("--cache-dir", type=Path, default=Path("misato_output/rcsb_asymmetric_unit"))
-    parser.add_argument("--report", type=Path, default=Path("misato_output/rcsb_asymmetric_unit/fetch_report.csv"))
+    parser.add_argument("--cache-dir", type=Path, default=DATA_ROOT / "misato/references")
+    parser.add_argument("--report", type=Path, default=Path("misato_output/fetch_report.csv"))
     parser.add_argument("--limit", type=int, default=0, help="First N unique PDB IDs; 0 means all")
     parser.add_argument("--timeout", type=int, default=30)
     parser.add_argument("--sleep", type=float, default=0.05)

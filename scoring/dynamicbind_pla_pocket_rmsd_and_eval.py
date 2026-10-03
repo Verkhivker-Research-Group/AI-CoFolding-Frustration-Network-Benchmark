@@ -28,7 +28,7 @@ What it does:
      Clean versions exclude models with pocket_rmsd > 20.0 Å.
 
 Run from WSL with the plb conda env active:
-    python -u scoring/dynamicbind_pla_pocket_rmsd_and_eval.py 2>&1 | tee /mnt/c/Temp/dynamicbind_pla_pocket.log
+    python -u scoring/dynamicbind_pla_pocket_rmsd_and_eval.py
 """
 
 import gzip as _gzip
@@ -42,9 +42,14 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-BENCH_ROOT = Path("/mnt/c/Users/Ryan/AI-CoFolding-Allostery-Benchmark")
-DATA_ROOT  = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive/plb_bench_data")
-REFS_DIR   = Path("/mnt/c/Users/Ryan/AI-CoFolding-Archive/references_ref_cifs")
+try:
+    from .local_paths import REPO_ROOT, DATA_ROOT as ARCHIVE_ROOT
+except ImportError:  # Direct script execution.
+    from local_paths import REPO_ROOT, DATA_ROOT as ARCHIVE_ROOT
+
+BENCH_ROOT = REPO_ROOT
+DATA_ROOT  = ARCHIVE_ROOT / "plb_bench_data"
+REFS_DIR   = ARCHIVE_ROOT / "references_ref_cifs"
 OUTPUT_DIR = BENCH_ROOT / "plb_bench_output" / "asd"   # where the parquet was scored
 EVAL_DIR   = BENCH_ROOT / "evalspreadsheets" / "pla"   # matches af3_pla, boltz_pla etc.
 

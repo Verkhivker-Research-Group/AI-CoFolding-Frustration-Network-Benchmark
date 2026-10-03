@@ -18,10 +18,15 @@ import urllib.error
 from pathlib import Path
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-ASD_MANIFEST   = Path("C:/Users/Ryan/Downloads/ASD_Release_202309_AS.txt")
-CHAI_PRED_DIR  = Path("C:/Users/Ryan/Downloads/chai/outputs")
-AF3_PRED_DIR   = Path("C:/Users/Ryan/Downloads/af3/output_final")
-OUT_DIR        = Path("C:/Users/Ryan/AI-CoFolding-Allostery-Benchmark/asd_score/ref_cifs")
+try:
+    from .local_paths import DATA_ROOT
+except ImportError:  # Direct script execution.
+    from local_paths import DATA_ROOT
+
+ASD_MANIFEST   = Path(os.environ.get("ASD_MANIFEST", DATA_ROOT / "ASD_Release_202309_AS.txt"))
+CHAI_PRED_DIR  = Path(os.environ.get("CHAI_PRED_DIR", DATA_ROOT / "chai" / "outputs"))
+AF3_PRED_DIR   = Path(os.environ.get("AF3_PRED_DIR", DATA_ROOT / "af3" / "output_final"))
+OUT_DIR        = DATA_ROOT / "asd_score" / "ref_cifs"
 
 RCSB_CIF_URL   = "https://files.rcsb.org/download/{pdb_id}.cif"
 SLEEP_S        = 0.05   # polite rate-limit between requests

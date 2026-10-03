@@ -24,11 +24,13 @@ try:
     from .audit_multiresidue_recovery import multiresidue_candidates
     from .score_multiresidue_recovery_wsl import graph_valid_copies
     from .score_static_docking_wsl import resolve_path
+    from .portable_paths import DATA_ROOT
 except ImportError:
     from audit_crystal_poses import heavy_mol, signature
     from audit_multiresidue_recovery import multiresidue_candidates
     from score_multiresidue_recovery_wsl import graph_valid_copies
     from score_static_docking_wsl import resolve_path
+    from portable_paths import DATA_ROOT
 
 
 FIELDS = ["target_id", "method", "status", "cnnscore", "gnina_version",
@@ -173,7 +175,7 @@ def main() -> int:
     parser.add_argument("--recovery-audit", type=Path,
                         default=Path("misato_output/multiresidue_recovery_all_v2.csv"))
     parser.add_argument("--crystal-dir", type=Path,
-                        default=Path("misato_output/rcsb_asymmetric_unit"))
+                        default=DATA_ROOT / "misato/references")
     parser.add_argument("--gnina", type=Path,
                         default=Path("misato_output/tools/gnina.1.3.3.cuda12.8.static"))
     parser.add_argument("--cuda-libs", type=Path,
