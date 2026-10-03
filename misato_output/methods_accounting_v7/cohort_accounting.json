@@ -1,0 +1,123 @@
+{
+  "generated_utc": "2026-09-26T05:03:14.507506+00:00",
+  "evidence": {
+    "published_primary_source": {
+      "pdbbind_starting_structures": 19443,
+      "md_complexes": 16972,
+      "source_url": "https://www.nature.com/articles/s43588-024-00627-2",
+      "starting_set_minus_lucas_reported_qm_entries": 30
+    },
+    "collaborator_reported_not_independently_verified": {
+      "qm_hdf5_entries": 19413,
+      "qm_ligand_sdfs_written": 19392,
+      "qm_ligand_sanitization_failed": 21,
+      "rcsb_proteins_saved": 14057,
+      "rcsb_proteins_missing": 5356,
+      "diffdock_input_pairs": 14037,
+      "diffdock_posed": 8419,
+      "diffdock_rdkit_skipped": 5610,
+      "equibind_posed": 8565,
+      "equibind_failed": 10827,
+      "equibind_failed_missing_protein": 5354,
+      "diffdock_reported_input_unaccounted": 8,
+      "equibind_failures_other_than_missing_protein": 5473,
+      "equibind_reported_outcomes_total": 19392
+    },
+    "directly_observed_delivered_files_and_reference_audit": {
+      "unique_delivered_target_ids": 8606,
+      "equibind_target_directories": 8569,
+      "diffdock_target_directories": 8419,
+      "equibind_primary_pose_files": 8565,
+      "diffdock_primary_pose_files": 8419,
+      "paired_primary_pose_ids": 8379,
+      "equibind_only_primary_pose_ids": 186,
+      "diffdock_only_primary_pose_ids": 40,
+      "paired_identity_dispositions": {
+        "eligible_exact_graph": 1712,
+        "eligible_representation_review": 118,
+        "eligible_stereochemistry_review": 6549
+      },
+      "crystal_status_by_method": {
+        "diffdock": {
+          "ambiguous_crystal_copies": 110,
+          "composite_reference_review": 131,
+          "graph_mapping_limit_reached": 21,
+          "no_graph_isomorphism": 17,
+          "no_native_element_match": 1418,
+          "provisional_pose_rmsd": 6722
+        },
+        "equibind": {
+          "ambiguous_crystal_copies": 201,
+          "atom_count_mismatch": 2,
+          "composite_reference_review": 131,
+          "graph_mapping_limit_reached": 21,
+          "no_graph_isomorphism": 17,
+          "no_native_element_match": 1439,
+          "provisional_pose_rmsd": 6754
+        }
+      },
+      "crystal_selection_by_method": {
+        "diffdock": {
+          "ambiguous_crystal_copies": 110,
+          "composite_reference_review": 131,
+          "copy_by_diffdock_proximity": 2753,
+          "no_native_element_match": 1418,
+          "single_candidate": 4007
+        },
+        "equibind": {
+          "ambiguous_crystal_copies": 201,
+          "composite_reference_review": 131,
+          "copy_by_diffdock_proximity": 2743,
+          "copy_by_equibind_proximity": 61,
+          "no_native_element_match": 1439,
+          "single_candidate": 3990
+        }
+      },
+      "strict_single_reference_diffdock_ids": 3982,
+      "strict_single_reference_equibind_ids": 3963,
+      "strict_single_reference_paired_ids": 3953,
+      "strict_paired_by_prediction_identity": {
+        "eligible_exact_graph": 925,
+        "eligible_representation_review": 49,
+        "eligible_stereochemistry_review": 2979
+      },
+      "published_md_split_ids": 16972,
+      "delivered_ids_outside_md_splits": 1124,
+      "delivered_ids_within_md_splits": 7482,
+      "verified_qm_hdf5_group_ids": 19413,
+      "delivered_ids_in_qm": 8606,
+      "delivered_ids_outside_qm": 0,
+      "qm_ids_without_delivered_directory": 10807,
+      "diffdock_primary_in_qm": 8419,
+      "equibind_primary_in_qm": 8565,
+      "paired_primary_in_qm": 8379,
+      "diffdock_primary_outside_qm": 0,
+      "equibind_primary_outside_qm": 0,
+      "paired_primary_outside_qm": 0,
+      "pose_heavy_element_match_qm_by_method": {
+        "diffdock": {
+          "match": 8419
+        },
+        "equibind": {
+          "match": 8565
+        }
+      },
+      "qm_hdf5_matches_lucas_reported_count": true,
+      "pose_qm_heavy_graph_by_method": {
+        "diffdock": {
+          "same_indexed_graph": 8419
+        },
+        "equibind": {
+          "same_indexed_graph": 8565
+        }
+      }
+    }
+  },
+  "interpretation": [
+    "Successful poses were not delivered for the complete reported 19,413-entry QM set.",
+    "The public QM entry count, ID membership, and pose heavy-element compositions were checksum-verified; prepared ligands, protein downloads, attempted inputs, and failure causes still require Lucas's input/status logs.",
+    "The eight DiffDock input pairs absent from the reported posed/skipped breakdown remain unresolved.",
+    "Official MD train/val/test lists are overlap context, not a docking-input denominator: Lucas says he did not use these splits or MD frames.",
+    "Strict single-reference counts are eligibility estimates, not completed OpenStructure scores; they exclude multi-copy, composite, unmatched, and graph-failed cases."
+  ]
+}

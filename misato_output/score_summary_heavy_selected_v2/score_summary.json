@@ -1,0 +1,414 @@
+{
+  "expected_delivered_pose_rows": 16984,
+  "observed_score_rows": 16984,
+  "missing_score_rows": 0,
+  "complete_score_file": true,
+  "method": {
+    "diffdock": {
+      "delivered_rows": 8419,
+      "strict_reference_eligible_rows": 3982,
+      "status_counts": {
+        "excluded_reference_or_graph_check": 4437,
+        "excluded_runtime_guard": 1,
+        "failed_scoring": 1,
+        "partial_or_no_metrics": 391,
+        "scored_both": 3589
+      },
+      "bisy_rmsd_angstrom": {
+        "n": 3589,
+        "mean": 1.9768878150721982,
+        "median": 0.9573151469230652
+      },
+      "lddt_pli": {
+        "n": 3589,
+        "mean": 0.8286316041683676,
+        "median": 0.892988920211792
+      },
+      "rmsd_le_2_angstrom": 2957
+    },
+    "equibind": {
+      "delivered_rows": 8565,
+      "strict_reference_eligible_rows": 3963,
+      "status_counts": {
+        "excluded_reference_or_graph_check": 4602,
+        "excluded_runtime_guard": 1,
+        "failed_scoring": 1,
+        "partial_or_no_metrics": 917,
+        "scored_both": 3044
+      },
+      "bisy_rmsd_angstrom": {
+        "n": 3044,
+        "mean": 5.066764496687834,
+        "median": 3.4378156661987305
+      },
+      "lddt_pli": {
+        "n": 3047,
+        "mean": 0.46331464067192274,
+        "median": 0.4829670190811157
+      },
+      "rmsd_le_2_angstrom": 563
+    }
+  },
+  "quality_control": {
+    "formal_vs_provisional_rmsd_disagreement_gt_0_5_angstrom": 171,
+    "disagreement_gt_2_angstrom": 152,
+    "disagreement_gt_10_angstrom": 94,
+    "disagreement_by_method": {
+      "diffdock": 79,
+      "equibind": 92
+    },
+    "disagreement_by_prediction_identity": {
+      "eligible_exact_graph": 45,
+      "eligible_representation_review": 3,
+      "eligible_stereochemistry_review": 121,
+      "not_audited": 2
+    },
+    "examples_first_30": [
+      {
+        "target_id": "4WSK",
+        "method": "diffdock",
+        "formal_angstrom": 1.311336874961853,
+        "provisional_angstrom": 113.2313,
+        "absolute_difference_angstrom": 111.91996312503815
+      },
+      {
+        "target_id": "4MYH",
+        "method": "diffdock",
+        "formal_angstrom": 1.619677186012268,
+        "provisional_angstrom": 113.4254,
+        "absolute_difference_angstrom": 111.80572281398773
+      },
+      {
+        "target_id": "4JJS",
+        "method": "diffdock",
+        "formal_angstrom": 1.1644294261932373,
+        "provisional_angstrom": 104.0041,
+        "absolute_difference_angstrom": 102.83967057380676
+      },
+      {
+        "target_id": "4JU7",
+        "method": "diffdock",
+        "formal_angstrom": 0.7552456259727478,
+        "provisional_angstrom": 103.0,
+        "absolute_difference_angstrom": 102.24475437402725
+      },
+      {
+        "target_id": "4DSY",
+        "method": "diffdock",
+        "formal_angstrom": 0.7990754246711731,
+        "provisional_angstrom": 72.2157,
+        "absolute_difference_angstrom": 71.41662457532883
+      },
+      {
+        "target_id": "4ZPH",
+        "method": "diffdock",
+        "formal_angstrom": 1.8665130138397217,
+        "provisional_angstrom": 71.9706,
+        "absolute_difference_angstrom": 70.10408698616028
+      },
+      {
+        "target_id": "3GR2",
+        "method": "diffdock",
+        "formal_angstrom": 0.5046334862709045,
+        "provisional_angstrom": 65.08,
+        "absolute_difference_angstrom": 64.5753665137291
+      },
+      {
+        "target_id": "4E5H",
+        "method": "diffdock",
+        "formal_angstrom": 1.4426020383834839,
+        "provisional_angstrom": 64.871,
+        "absolute_difference_angstrom": 63.42839796161651
+      },
+      {
+        "target_id": "3QGY",
+        "method": "diffdock",
+        "formal_angstrom": 2.163248062133789,
+        "provisional_angstrom": 62.6513,
+        "absolute_difference_angstrom": 60.48805193786621
+      },
+      {
+        "target_id": "3MWW",
+        "method": "diffdock",
+        "formal_angstrom": 25.00724220275879,
+        "provisional_angstrom": 84.2358,
+        "absolute_difference_angstrom": 59.22855779724121
+      },
+      {
+        "target_id": "2VD1",
+        "method": "diffdock",
+        "formal_angstrom": 1.535370945930481,
+        "provisional_angstrom": 57.8708,
+        "absolute_difference_angstrom": 56.33542905406952
+      },
+      {
+        "target_id": "1L5R",
+        "method": "diffdock",
+        "formal_angstrom": 1.220453143119812,
+        "provisional_angstrom": 57.0747,
+        "absolute_difference_angstrom": 55.85424685688019
+      },
+      {
+        "target_id": "5CR7",
+        "method": "diffdock",
+        "formal_angstrom": 1.9744844436645508,
+        "provisional_angstrom": 56.0689,
+        "absolute_difference_angstrom": 54.09441555633545
+      },
+      {
+        "target_id": "2IT4",
+        "method": "diffdock",
+        "formal_angstrom": 0.8713802695274353,
+        "provisional_angstrom": 52.5433,
+        "absolute_difference_angstrom": 51.67191973047257
+      },
+      {
+        "target_id": "3KMC",
+        "method": "diffdock",
+        "formal_angstrom": 0.5071277618408203,
+        "provisional_angstrom": 51.7822,
+        "absolute_difference_angstrom": 51.27507223815918
+      },
+      {
+        "target_id": "3GVB",
+        "method": "diffdock",
+        "formal_angstrom": 6.604048728942871,
+        "provisional_angstrom": 57.6456,
+        "absolute_difference_angstrom": 51.04155127105713
+      },
+      {
+        "target_id": "5F3E",
+        "method": "diffdock",
+        "formal_angstrom": 0.49898281693458557,
+        "provisional_angstrom": 50.8844,
+        "absolute_difference_angstrom": 50.385417183065414
+      },
+      {
+        "target_id": "5F3I",
+        "method": "diffdock",
+        "formal_angstrom": 0.610785186290741,
+        "provisional_angstrom": 50.746,
+        "absolute_difference_angstrom": 50.13521481370926
+      },
+      {
+        "target_id": "4TNW",
+        "method": "equibind",
+        "formal_angstrom": 4.524208068847656,
+        "provisional_angstrom": 54.0172,
+        "absolute_difference_angstrom": 49.492991931152346
+      },
+      {
+        "target_id": "5EIF",
+        "method": "diffdock",
+        "formal_angstrom": 0.6859992146492004,
+        "provisional_angstrom": 49.323,
+        "absolute_difference_angstrom": 48.6370007853508
+      },
+      {
+        "target_id": "2OBO",
+        "method": "diffdock",
+        "formal_angstrom": 1.245099425315857,
+        "provisional_angstrom": 49.8788,
+        "absolute_difference_angstrom": 48.63370057468414
+      },
+      {
+        "target_id": "2G5P",
+        "method": "diffdock",
+        "formal_angstrom": 0.6723114252090454,
+        "provisional_angstrom": 48.9763,
+        "absolute_difference_angstrom": 48.30398857479096
+      },
+      {
+        "target_id": "2A4G",
+        "method": "diffdock",
+        "formal_angstrom": 1.3328592777252197,
+        "provisional_angstrom": 49.3559,
+        "absolute_difference_angstrom": 48.02304072227478
+      },
+      {
+        "target_id": "2FM2",
+        "method": "diffdock",
+        "formal_angstrom": 3.3430285453796387,
+        "provisional_angstrom": 49.9558,
+        "absolute_difference_angstrom": 46.612771454620365
+      },
+      {
+        "target_id": "2OC0",
+        "method": "diffdock",
+        "formal_angstrom": 3.981130361557007,
+        "provisional_angstrom": 50.1338,
+        "absolute_difference_angstrom": 46.152669638442994
+      },
+      {
+        "target_id": "1BO5",
+        "method": "diffdock",
+        "formal_angstrom": 35.29859161376953,
+        "provisional_angstrom": 80.3703,
+        "absolute_difference_angstrom": 45.07170838623047
+      },
+      {
+        "target_id": "2G5T",
+        "method": "diffdock",
+        "formal_angstrom": 0.740236759185791,
+        "provisional_angstrom": 45.807,
+        "absolute_difference_angstrom": 45.06676324081421
+      },
+      {
+        "target_id": "2G63",
+        "method": "diffdock",
+        "formal_angstrom": 1.4276877641677856,
+        "provisional_angstrom": 46.2841,
+        "absolute_difference_angstrom": 44.85641223583222
+      },
+      {
+        "target_id": "5E0H",
+        "method": "diffdock",
+        "formal_angstrom": 1.5823999643325806,
+        "provisional_angstrom": 45.5224,
+        "absolute_difference_angstrom": 43.94000003566742
+      },
+      {
+        "target_id": "2I3Z",
+        "method": "diffdock",
+        "formal_angstrom": 0.7019772529602051,
+        "provisional_angstrom": 44.1451,
+        "absolute_difference_angstrom": 43.443122747039794
+      }
+    ],
+    "interpretation": "Flag for manual review, not automatic exclusion; the two algorithms are not identical."
+  },
+  "paired_primary_exact_prediction_graph": {
+    "eligible_paired_ids_in_score_file": 925,
+    "both_bisy_rmsd_available": 749,
+    "both_lddt_pli_available": 749,
+    "bisy_rmsd_diffdock": {
+      "n": 749,
+      "mean": 1.576666788440521,
+      "median": 0.573079526424408
+    },
+    "bisy_rmsd_equibind": {
+      "n": 749,
+      "mean": 4.554995359820581,
+      "median": 3.042269706726074
+    },
+    "lddt_pli_diffdock": {
+      "n": 749,
+      "mean": 0.8794070889137235,
+      "median": 0.9592675566673279
+    },
+    "lddt_pli_equibind": {
+      "n": 749,
+      "mean": 0.5000190695022896,
+      "median": 0.5323795080184937
+    },
+    "diffdock_lower_rmsd": 696,
+    "equibind_lower_rmsd": 53,
+    "rmsd_ties": 0,
+    "diffdock_higher_lddt": 710,
+    "equibind_higher_lddt": 36,
+    "lddt_ties": 3,
+    "rmsd_le_2_angstrom_diffdock": 662,
+    "rmsd_le_2_angstrom_equibind": 178
+  },
+  "paired_broad_topology_matched_sensitivity": {
+    "eligible_paired_ids_in_score_file": 3953,
+    "both_bisy_rmsd_available": 2926,
+    "both_lddt_pli_available": 2928,
+    "bisy_rmsd_diffdock": {
+      "n": 2926,
+      "mean": 1.8757385334798269,
+      "median": 0.8870702683925629
+    },
+    "bisy_rmsd_equibind": {
+      "n": 2926,
+      "mean": 5.045995694883702,
+      "median": 3.4173609018325806
+    },
+    "lddt_pli_diffdock": {
+      "n": 2928,
+      "mean": 0.8410612181866031,
+      "median": 0.9055396914482117
+    },
+    "lddt_pli_equibind": {
+      "n": 2928,
+      "mean": 0.4654595935009559,
+      "median": 0.48768965899944305
+    },
+    "diffdock_lower_rmsd": 2676,
+    "equibind_lower_rmsd": 250,
+    "rmsd_ties": 0,
+    "diffdock_higher_lddt": 2734,
+    "equibind_higher_lddt": 175,
+    "lddt_ties": 19,
+    "rmsd_le_2_angstrom_diffdock": 2482,
+    "rmsd_le_2_angstrom_equibind": 546
+  },
+  "paired_exact_graph_frame_consistent_sensitivity": {
+    "eligible_paired_ids_in_score_file": 717,
+    "both_bisy_rmsd_available": 717,
+    "both_lddt_pli_available": 717,
+    "bisy_rmsd_diffdock": {
+      "n": 717,
+      "mean": 1.5113680301808248,
+      "median": 0.5605135560035706
+    },
+    "bisy_rmsd_equibind": {
+      "n": 717,
+      "mean": 4.176241971625111,
+      "median": 2.953505516052246
+    },
+    "lddt_pli_diffdock": {
+      "n": 717,
+      "mean": 0.8888532993040467,
+      "median": 0.9622641801834106
+    },
+    "lddt_pli_equibind": {
+      "n": 717,
+      "mean": 0.5175966302900136,
+      "median": 0.5453001260757446
+    },
+    "diffdock_lower_rmsd": 665,
+    "equibind_lower_rmsd": 52,
+    "rmsd_ties": 0,
+    "diffdock_higher_lddt": 679,
+    "equibind_higher_lddt": 35,
+    "lddt_ties": 3,
+    "rmsd_le_2_angstrom_diffdock": 640,
+    "rmsd_le_2_angstrom_equibind": 177
+  },
+  "sensitivity_direct_coordinate_rmsd_not_formal_bisyrmsd": {
+    "paired_ids": 3953,
+    "diffdock_angstrom": {
+      "n": 3953,
+      "mean": 2.744278725018973,
+      "median": 0.9955
+    },
+    "equibind_angstrom": {
+      "n": 3953,
+      "mean": 5.468931596256008,
+      "median": 3.7212
+    },
+    "diffdock_le_2_angstrom": 3189,
+    "equibind_le_2_angstrom": 624,
+    "diffdock_lower": 3547,
+    "equibind_lower": 406,
+    "interpretation": "Exploratory sensitivity on the full strict-reference cohort; not the original OST BiSyRMSD metric."
+  },
+  "sensitivity_direct_coordinate_rmsd_exact_prediction_graph": {
+    "paired_ids": 925,
+    "diffdock_angstrom": {
+      "n": 925,
+      "mean": 2.4689565405405407,
+      "median": 0.6392
+    },
+    "equibind_angstrom": {
+      "n": 925,
+      "mean": 4.797165513513513,
+      "median": 3.1809
+    },
+    "diffdock_le_2_angstrom": 790,
+    "equibind_le_2_angstrom": 198,
+    "diffdock_lower": 836,
+    "equibind_lower": 89
+  }
+}
