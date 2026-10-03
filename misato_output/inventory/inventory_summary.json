@@ -1,0 +1,27 @@
+{
+  "created_utc": "2026-09-17T05:01:31.079710+00:00",
+  "sources": {
+    "equibind_root": "C:\\Users\\Ryan\\Downloads\\misato_equibind_results\\nfshome\\turano\\Datasets\\misato\\equibind_output",
+    "diffdock_root": "C:\\Users\\Ryan\\Downloads\\MisatoDiffdockResults\\MisatoDiffdockResults"
+  },
+  "equibind": {
+    "target_directories": 8569,
+    "record_statuses": {
+      "candidate": 8565,
+      "missing_primary": 4
+    }
+  },
+  "diffdock": {
+    "target_directories": 8419,
+    "record_statuses": {
+      "candidate": 8419,
+      "retained_unselected": 84936
+    }
+  },
+  "cohort": {
+    "all_target_ids": 8606,
+    "shared_target_ids": 8382,
+    "valid_primary_candidates": 8379
+  },
+  "policy": "Only EquiBind lig_equibind_corrected.sdf and DiffDock rank1.sdf are primary candidates. Other DiffDock files are retained but not pooled."
+}
