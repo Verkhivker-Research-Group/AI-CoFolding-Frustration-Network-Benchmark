@@ -1,0 +1,19 @@
+name: misato-benchmark
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - openstructure=2.11.1
+  - pip
+  - pip:
+      - numpy==1.26.4
+      - pandas==2.3.3
+      - scipy==1.17.1
+      - networkx==3.6.1
+      - gemmi==0.7.5
+      - rdkit==2026.3.1
+      - pyarrow==24.0.0
+      - requests==2.33.1
+      - biopython==1.87
+      - h5py>=3.10,<4
